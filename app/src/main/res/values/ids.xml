@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="txt_email" type="id"/>
+    <item name="txt_password" type="id"/>
+    <item name="txt_confirm_password" type="id"/>
+    <item name="buttonRegister" type="id"/>
+    <item name="progressBar" type="id"/>
+    <item name="videoWebView" type="id"/>
+</resources>
