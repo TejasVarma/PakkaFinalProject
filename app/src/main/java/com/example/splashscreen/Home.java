@@ -45,6 +45,7 @@ public class Home extends AppCompatActivity {
     boolean isGreenClick = false;
     boolean isYellowClick = false;
     boolean isTorchOn = false;
+    private SharedPreferenceConfig preferenceConfig;
 
 
     @Override
@@ -52,11 +53,19 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         sharedPreferences = getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS}, REQUEST_LOCATION);
 
 
 
+    }
+
+    public void userLogout(View view) {
+
+        preferenceConfig.writeLoginStatus(false);
+        startActivity(new Intent(this,Login.class));
+        finish();
     }
 
     public void redClick(final View view) {

@@ -21,12 +21,14 @@ public class Login extends AppCompatActivity {
     EditText txtEmail, txtPassword;
     Button btn_login;
     private FirebaseAuth firebaseAuth;
+    private SharedPreferenceConfig preferenceConfig;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
 
         txtEmail = (EditText)findViewById(R.id.txt_email);
         txtPassword = (EditText)findViewById(R.id.txt_password);
@@ -34,13 +36,19 @@ public class Login extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        if(preferenceConfig.readLoginStatus())
+        {
+            startActivity(new Intent(this,Home.class));
+            finish();
+        }
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String email = txtEmail.getText().toString().trim();
-                String password = txtPassword.getText().toString().trim();
+                final String email = txtEmail.getText().toString().trim();
+                final String password = txtPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(Login.this, "Please enter email", Toast.LENGTH_SHORT).show();
@@ -60,8 +68,10 @@ public class Login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
 
+                                    preferenceConfig.writeLoginStatus(true );
                                     Intent intent = new Intent(Login.this,Home.class);
                                     startActivity(intent);
+                                    finish();
 
                                 } else {
 

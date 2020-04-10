@@ -104,6 +104,7 @@ public class SignUp extends AppCompatActivity {
                                                 .setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+
                                                 Intent intent = new Intent(SignUp.this,Home.class);
                                                 startActivity(intent);
                                                 Toast.makeText(SignUp.this, "Registration Succes", Toast.LENGTH_SHORT).show();

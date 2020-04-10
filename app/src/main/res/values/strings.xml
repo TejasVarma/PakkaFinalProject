@@ -18,5 +18,7 @@
     <string name="appp_name">Flashlight</string>
     <string name="switch_on_text">Switch On</string>
     <string name="switch_off_text">Switch Off</string>
+    <string name="login_preference">login_preference</string>
+    <string name="login_status_preference">login_status_preference</string>
 
 </resources>
