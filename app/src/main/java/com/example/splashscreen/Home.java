@@ -30,6 +30,7 @@ import androidx.core.app.ActivityCompat;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class Home extends AppCompatActivity {
+    Button btnRed;
 
     MediaPlayer player = new MediaPlayer();
     SharedPreferences sharedPreferences;
@@ -48,6 +49,7 @@ public class Home extends AppCompatActivity {
     private SharedPreferenceConfig preferenceConfig;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +58,7 @@ public class Home extends AppCompatActivity {
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS}, REQUEST_LOCATION);
-
-
-
+        btnRed =findViewById(R.id.btnRed);
     }
 
     public void userLogout(View view) {
@@ -69,6 +69,13 @@ public class Home extends AppCompatActivity {
     }
 
     public void redClick(final View view) {
+       /* Intent intent = new Intent(Intent.ACTION_CALL);
+        Intent intent1= new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("tel:9663803347"));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(intent);*/
         if (!getSender().equalsIgnoreCase("invalid")) {
             message = getRedMsg() + " Name:" + getSender() + " Cell:" + getContact() + getMapLink();
             isRedClick = true;
@@ -89,7 +96,44 @@ public class Home extends AppCompatActivity {
             Toast.makeText(this, "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
             toggle(view);
         }
-
+        if (player.isPlaying()) {
+            player.stop();
+        } else {
+            player = MediaPlayer.create(this, R.raw.siren);
+            player.start();
+            player.setLooping(true);
+        }
+        String command = null;
+        Button button = (Button) view;
+        if (button.getText().equals("Switch On")) {
+            button.setText(R.string.switch_off_text);
+            button.setBackgroundResource(R.drawable.sos);
+            torchToggle("on");
+        } else {
+            button.setText(R.string.switch_on_text);
+            button.setBackgroundResource(R.drawable.sos);
+            torchToggle("off");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            String cameraId = null; // Usually back camera is at 0 position.
+            try {
+                if (camManager != null) {
+                    cameraId = camManager.getCameraIdList()[0];
+                }
+                if (camManager != null) {
+                    if (command.equals("on")) {
+                        camManager.setTorchMode(cameraId, true);   // Turn ON
+                        isTorchOn = true;
+                    } else {
+                        camManager.setTorchMode(cameraId, false);  // Turn OFF
+                        isTorchOn = false;
+                    }
+                }
+            } catch (CameraAccessException e) {
+                e.getMessage();
+            }
+        }
     }
 
 
@@ -165,6 +209,7 @@ public class Home extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
         }
+        player.stop();
     }
 
     private void sendOneByOne() {
@@ -218,7 +263,7 @@ public class Home extends AppCompatActivity {
         } else {
             player = MediaPlayer.create(this, R.raw.siren);
             player.start();
-            player.setLooping(true);
+            player.setLooping(false);
         }
     }
 
