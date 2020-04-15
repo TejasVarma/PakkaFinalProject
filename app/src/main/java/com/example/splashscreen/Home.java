@@ -30,7 +30,7 @@ import androidx.core.app.ActivityCompat;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class Home extends AppCompatActivity {
-    Button btnRed;
+    Button btnRed, btnGreen;
 
     MediaPlayer player = new MediaPlayer();
     SharedPreferences sharedPreferences;
@@ -48,6 +48,31 @@ public class Home extends AppCompatActivity {
     boolean isTorchOn = false;
     private SharedPreferenceConfig preferenceConfig;
 
+    private Thread sosThread = new Thread() {
+        public void run() {
+            try {
+                for (int x = 0; x < 20; x++) {
+                    for (int i = 0; i < 9; i++) {
+                        torchToggle("on");
+                        if (i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8) {
+                            Thread.sleep(250);
+                        } else {
+                            Thread.sleep(500);
+                        }
+                        torchToggle("off");
+                        if (i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8) {
+                            Thread.sleep(250);
+                        } else {
+                            Thread.sleep(500);
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
 
 
     @Override
@@ -58,24 +83,48 @@ public class Home extends AppCompatActivity {
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS}, REQUEST_LOCATION);
-        btnRed =findViewById(R.id.btnRed);
+        btnRed = findViewById(R.id.btnRed);
+        btnGreen = findViewById(R.id.btnGreen);
+
+        btnGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!getSender().equalsIgnoreCase("invalid")) {
+                    message = getGreenMsg() + " Name:" + getSender() + " Cell:" + getContact() + getMapLink();
+                    sendOneByOne();
+                    isYellowClick = false;
+                    isRedClick = false;
+                    isGreenClick = true;
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
+                }
+                if (player.isPlaying()) {
+                    player.stop();
+                }
+                if (sosThread.isAlive()) {
+                    sosThread.stop();
+                }
+                //torchToggle("off");
+            }
+        });
     }
 
     public void userLogout(View view) {
 
         preferenceConfig.writeLoginStatus(false);
-        startActivity(new Intent(this,Login.class));
+        startActivity(new Intent(this, Login.class));
         finish();
     }
 
     public void redClick(final View view) {
-       /* Intent intent = new Intent(Intent.ACTION_CALL);
+        Intent intent = new Intent(Intent.ACTION_CALL);
         Intent intent1= new Intent(Intent.ACTION_SEND);
-        intent.setData(Uri.parse("tel:9663803347"));
+        intent.setData(Uri.parse("tel:7259508561"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        startActivity(intent);*/
+        startActivity(intent);
+
         if (!getSender().equalsIgnoreCase("invalid")) {
             message = getRedMsg() + " Name:" + getSender() + " Cell:" + getContact() + getMapLink();
             isRedClick = true;
@@ -91,7 +140,7 @@ public class Home extends AppCompatActivity {
                     } else if (isGreenClick)
                         finish();
                 }
-            }, 10000);
+            }, 10000000);
         } else {
             Toast.makeText(this, "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
             toggle(view);
@@ -103,18 +152,8 @@ public class Home extends AppCompatActivity {
             player.start();
             player.setLooping(true);
         }
-        String command = null;
-        Button button = (Button) view;
-        if (button.getText().equals("Switch On")) {
-            button.setText(R.string.switch_off_text);
-            button.setBackgroundResource(R.drawable.sos);
-            torchToggle("on");
-        } else {
-            button.setText(R.string.switch_on_text);
-            button.setBackgroundResource(R.drawable.sos);
-            torchToggle("off");
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        sosPatternFlashToggle();
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
             String cameraId = null; // Usually back camera is at 0 position.
             try {
@@ -133,9 +172,12 @@ public class Home extends AppCompatActivity {
             } catch (CameraAccessException e) {
                 e.getMessage();
             }
-        }
+        }*/
     }
 
+    private void sosPatternFlashToggle() {
+        sosThread.start();
+    }
 
     private String getMapLink() {
         getMapData();
@@ -205,11 +247,16 @@ public class Home extends AppCompatActivity {
             isYellowClick = false;
             isRedClick = false;
             isGreenClick = true;
-            finish();
         } else {
             Toast.makeText(this, "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
         }
-        player.stop();
+        if (player.isPlaying()) {
+            player.stop();
+        }
+        if (sosThread.isAlive()) {
+            sosThread.stop();
+        }
+        //torchToggle("off");
     }
 
     private void sendOneByOne() {
@@ -268,7 +315,7 @@ public class Home extends AppCompatActivity {
     }
 
     //Code for flashlight
-    public void toggle(View view){
+    public void toggle(View view) {
         Button button = (Button) view;
         if (button.getText().equals("Switch On")) {
             button.setText(R.string.switch_off_text);
@@ -330,8 +377,8 @@ public class Home extends AppCompatActivity {
             return "Hi, sending a status update..!!!";
     }
 
-    public void morebutton(View view){
-        Intent intent = new Intent(Home.this,More.class);
+    public void morebutton(View view) {
+        Intent intent = new Intent(Home.this, More.class);
         startActivity(intent);
     }
 

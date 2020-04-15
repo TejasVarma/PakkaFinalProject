@@ -55,8 +55,6 @@
         android:layout_margin="10dp"
         android:background="@drawable/safe"
         android:fontFamily="serif"
-        android:onClick="greenClick"
-
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold"
