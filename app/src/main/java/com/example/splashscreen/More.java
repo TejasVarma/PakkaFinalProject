@@ -31,5 +31,9 @@ public class More extends AppCompatActivity {
         startActivity(yo);
     }
 
+    public void back(View view){
+        Intent aaa = new Intent(More.this,Home.class);
+        startActivity(aaa);
+    }
 
 }

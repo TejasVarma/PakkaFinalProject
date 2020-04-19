@@ -20,9 +20,13 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 import android.os.Handler;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +51,10 @@ public class Home extends AppCompatActivity {
     boolean isYellowClick = false;
     boolean isTorchOn = false;
     private SharedPreferenceConfig preferenceConfig;
+
+    FloatingActionButton fab,fab1,fab2;
+    Animation fabOpen, fabClose, rotateForward, rotateBackward;
+    boolean isOpen = false;
 
     private Thread sosThread = new Thread() {
         public void run() {
@@ -79,6 +87,41 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
+
+        fabOpen = AnimationUtils.loadAnimation(this,R.anim.fab_open);
+        fabClose = AnimationUtils.loadAnimation(this,R.anim.fab_close);
+
+        rotateForward = AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
+        rotateBackward = AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();
+            }
+        });
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();
+                Intent xyx = new Intent(Home.this,SettingActivity.class);
+                startActivity(xyx);
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();
+                Toast.makeText(Home.this, "Folder fab clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         sharedPreferences = getSharedPreferences("myPreference", Context.MODE_PRIVATE);
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         ActivityCompat.requestPermissions(this,
@@ -95,6 +138,7 @@ public class Home extends AppCompatActivity {
                     isYellowClick = false;
                     isRedClick = false;
                     isGreenClick = true;
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
                 }
@@ -102,12 +146,35 @@ public class Home extends AppCompatActivity {
                     player.stop();
                 }
                 if (sosThread.isAlive()) {
-                    sosThread.stop();
+                    sosThread.interrupt();
                 }
                 //torchToggle("off");
             }
         });
     }
+
+    private void animateFab()
+    {
+        if(isOpen)
+        {
+            fab.startAnimation(rotateForward);
+            fab1.startAnimation(fabClose);
+            fab2.startAnimation(fabClose);
+            fab1.setClickable(false);
+            fab2.setClickable(false);
+            isOpen=false;
+        }
+        else
+        {
+            fab.startAnimation(rotateBackward);
+            fab1.startAnimation(fabOpen);
+            fab2.startAnimation(fabOpen);
+            fab1.setClickable(true);
+            fab2.setClickable(true);
+            isOpen=true;
+        }
+    }
+
 
     public void userLogout(View view) {
 
@@ -119,7 +186,7 @@ public class Home extends AppCompatActivity {
     public void redClick(final View view) {
         Intent intent = new Intent(Intent.ACTION_CALL);
         Intent intent1= new Intent(Intent.ACTION_SEND);
-        intent.setData(Uri.parse("tel:7259508561"));
+        intent.setData(Uri.parse("tel:9663803347"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -254,7 +321,7 @@ public class Home extends AppCompatActivity {
             player.stop();
         }
         if (sosThread.isAlive()) {
-            sosThread.stop();
+            sosThread.interrupt();
         }
         //torchToggle("off");
     }

@@ -1,78 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logo_and_txt"
     android:orientation="vertical"
     android:padding="30dp"
     tools:context=".Login">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/applogo"
-        android:padding="30dp"/>
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="5dp"
-        >
+        android:textColorHint="#F6F4F4"
+        app:boxStrokeColor="#FBF8F8"
+        app:endIconTint="#FAF9F9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327">
 
-        <EditText
-            android:id="@+id/txt_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="Email"
+        android:inputType="text"
+        android:textColor="#FBF8F8"
+        android:textColorHighlight="#FAF6F6"
+        android:textColorHint="#FBF8F8"
+        android:textColorLink="#F8F5F5"
+        android:textCursorDrawable="@android:color/holo_red_dark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="5dp"
+        android:textColorHint="#F6F4F4"
+        app:boxStrokeColor="#FBF8F8"
+        app:endIconTint="#FAF9F9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.449"
         app:passwordToggleEnabled="true"
-        >
+        app:passwordToggleTint="#FAF9F9">
 
         <EditText
             android:id="@+id/txt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
             android:ems="10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:textSize="20sp" />
+            android:textColor="#FBF8F8"
+            android:textColorHighlight="#FAF6F6"
+            android:textColorHint="#FBF8F8"
+            android:textColorLink="#F8F5F5"
+            android:textCursorDrawable="@android:color/holo_red_dark"
+            android:textSize="20sp"
+            app:passwordToggleEnabled="true" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="60dp"
-        android:text="Login"
-        android:textSize="22sp"
+        android:background="@drawable/loginbtn"
         android:textColor="#ffffff"
-        android:layout_marginTop="40dp"/>
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66" />
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/button2"
+        android:layout_width="300dp"
         android:layout_height="60dp"
-        android:text="SignUp"
-        android:textSize="22sp"
-        android:textColor="#ffffff"
+        android:background="@drawable/signupbtn"
         android:onClick="btn_signup"
-        android:layout_marginTop="10dp"/>
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
