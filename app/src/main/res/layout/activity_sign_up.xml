@@ -105,21 +105,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <Button
         android:id="@+id/buttonRegister"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="60dp"
+        android:background="@drawable/register"
         android:clickable="true"
-        android:text="Register"
         android:textColor="#ffffff"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintHorizontal_bias="0.387"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.767" />
+        app:layout_constraintVertical_bias="0.763" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout11"

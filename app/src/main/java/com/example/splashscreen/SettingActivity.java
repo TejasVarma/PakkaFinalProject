@@ -28,8 +28,6 @@ public class SettingActivity extends AppCompatActivity {
         etP1 = findViewById(R.id.etP1);
         etP2 = findViewById(R.id.etP2);
         etP3 = findViewById(R.id.etP3);
-        etP4 = findViewById(R.id.etP4);
-        etP5 = findViewById(R.id.etP5);
     }
 
     @Override
@@ -56,14 +54,10 @@ public class SettingActivity extends AppCompatActivity {
             etP2.setText(sharedPreferences.getString("p2", ""));
         if (sharedPreferences.contains("p3"))
             etP3.setText(sharedPreferences.getString("p3", ""));
-        if (sharedPreferences.contains("p4"))
-            etP4.setText(sharedPreferences.getString("p4", ""));
-        if (sharedPreferences.contains("p5"))
-            etP5.setText(sharedPreferences.getString("p5", ""));
     }
 
     private void setData(String name, String contact, String address, String redMsg, String yellowMsg,
-                         String greenMsg, String p1, String p2, String p3, String p4, String p5) {
+                         String greenMsg, String p1, String p2, String p3) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("name", name);
         editor.putString("contact", contact);
@@ -76,8 +70,6 @@ public class SettingActivity extends AppCompatActivity {
         editor.putString("p1", p1);
         editor.putString("p2", p2);
         editor.putString("p3", p3);
-        editor.putString("p4", p4);
-        editor.putString("p5", p5);
         editor.commit();
 
         etName.setText("");
@@ -91,8 +83,6 @@ public class SettingActivity extends AppCompatActivity {
         etP1.setText("");
         etP2.setText("");
         etP3.setText("");
-        etP4.setText("");
-        etP5.setText("");
     }
 
     public void saveClick(View view) {
@@ -107,9 +97,7 @@ public class SettingActivity extends AppCompatActivity {
         String p1 = etP1.getText().toString().trim();
         String p2 = etP2.getText().toString().trim();
         String p3 = etP3.getText().toString().trim();
-        String p4 = etP4.getText().toString().trim();
-        String p5 = etP5.getText().toString().trim();
-        setData(name, contact, address, redMsg, yellowMsg, greenMsg, p1, p2, p3, p4, p5);
+        setData(name, contact, address, redMsg, yellowMsg, greenMsg, p1, p2, p3);
         Toast.makeText(this, "Successfully Saved...!!!!", Toast.LENGTH_SHORT).show();
         finish();
     }

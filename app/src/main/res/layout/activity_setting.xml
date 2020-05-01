@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0b0b0b"
+    android:background="#000000"
     tools:context=".SettingActivity">
 
     <LinearLayout
@@ -15,319 +15,309 @@
 
         <ImageView
             android:layout_width="180dp"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:layout_margin="20dp"
             android:background="@drawable/applogo"/>
 
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="serif"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="115dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/name"
             android:textColor="#fff"
-            android:textStyle="bold"
-            android:text="Your Name"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:gravity="center"
             android:inputType="textPersonName"
+            android:background="@drawable/redoutline"
             android:textStyle="bold"
-            android:background="@drawable/et2"
             android:textColor="#fff"
             android:textSize="16sp"/>
 
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="95dp"
             android:fontFamily="serif"
             android:textColor="#fff"
+            android:background="@drawable/contactno"
             android:textStyle="bold"
-            android:text="Cell No"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etContact"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="phone"
             android:textStyle="bold"
-            android:background="@drawable/et2"
+            android:background="@drawable/redoutline"
             android:gravity="center"
             android:textSize="16sp"/>
+
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="101dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="Address"
+            android:background="@drawable/address"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etAddress"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="text"
             android:textStyle="bold"
-            android:background="@drawable/et2"
+            android:background="@drawable/redoutline"
             android:gravity="center"
             android:textSize="16sp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_margin="5dp"
-            android:text="***************************************"/>
+            android:layout_width="300dp"
+            android:layout_height="4dp"
+            android:background="@drawable/line"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
 
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_width="265dp"
+            android:layout_height="28dp"
             android:textSize="16sp"
             android:fontFamily="serif"
             android:layout_margin="10dp"
-            android:background="@drawable/et2"
             android:gravity="center"
-            android:text="Please Confirm Your Messages"
+            android:background="@drawable/plzconfimmessage"
             android:enabled="false"
             android:textStyle="bold"
             android:textColor="#fff"/>
+
         <TextView
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_height="5dp"
+            android:background="@drawable/line"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"/>
+
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
+            android:layout_marginRight="97dp"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="Red Alert Message"
+            android:background="@drawable/sosmessage"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etRedMsg"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="text"
+            android:background="@drawable/redoutline"
             android:textStyle="bold"
-            android:text="Hi, I am in trouble. Please help..!!!"
-            android:background="@drawable/et2"
+            android:text="Need help"
             android:gravity="center"
             android:textSize="16sp"/>
+
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="Yellow Alert Message"
+            android:background="@drawable/cautionmessage"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etYellowMsg"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="text"
             android:textStyle="bold"
-            android:text="Hi, just being cautious..!!!"
-            android:background="@drawable/et2"
+            android:text="Just being cautious"
+            android:background="@drawable/redoutline"
             android:gravity="center"
             android:textSize="16sp"/>
+
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="97dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="Green Alert Message"
+            android:background="@drawable/safemessage"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etGreenMsg"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
+            android:background="@drawable/redoutline"
             android:fontFamily="serif"
-            android:textColor="#fff"
+            android:gravity="center"
             android:inputType="text"
-            android:textStyle="bold"
-            android:text="Hi, sending a status update..!!!"
-            android:background="@drawable/et2"
-            android:gravity="center"
-            android:textSize="16sp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:text="I'm safe, Thank You"
             android:textColor="#fff"
-            android:gravity="center"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:layout_margin="5dp"
-            android:text="***************************************"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="300dp"
+            android:layout_height="4dp"
+            android:background="@drawable/line"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="265dp"
             android:layout_height="40dp"
             android:textSize="16sp"
+            android:layout_marginTop="10dp"
             android:fontFamily="serif"
             android:layout_margin="10dp"
-            android:background="@drawable/et2"
             android:gravity="center"
-            android:text="Your Added Contacts List"
+            android:text="CONTACTS LIST"
             android:enabled="false"
             android:textStyle="bold"
             android:textColor="#fff"/>
+
         <TextView
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_height="5dp"
+            android:background="@drawable/line"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:fontFamily="serif"
+            android:layout_marginRight="49dp"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="First Person Cell No"
+            android:background="@drawable/firstpersoncontact"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etP1"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="phone"
             android:textStyle="bold"
-            android:background="@drawable/et2"
+            android:background="@drawable/redoutline"
             android:gravity="center"
             android:textSize="16sp"/>
+
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="49dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="Second Person Cell No"
+            android:background="@drawable/secondpersoncontact"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etP2"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="phone"
             android:textStyle="bold"
-            android:background="@drawable/et2"
+            android:background="@drawable/redoutline"
             android:gravity="center"
             android:textSize="16sp"/>
+
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="49dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textColorHint="#fff"
-            android:text="Third Person Cell No"
+            android:background="@drawable/thirdpersoncontact"
             android:textSize="16sp"/>
+
         <EditText
             android:id="@+id/etP3"
             android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:fontFamily="serif"
             android:textColor="#fff"
             android:inputType="phone"
             android:textStyle="bold"
-            android:background="@drawable/et2"
+            android:background="@drawable/redoutline"
             android:gravity="center"
             android:textSize="16sp"/>
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="serif"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:textColorHint="#fff"
-            android:text="Fourth Person Cell No"
-            android:textSize="16sp"/>
-        <EditText
-            android:id="@+id/etP4"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:fontFamily="serif"
-            android:textColor="#fff"
-            android:inputType="phone"
-            android:textStyle="bold"
-            android:background="@drawable/et2"
-            android:gravity="center"
-            android:textSize="16sp"/>
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="serif"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:textColorHint="#fff"
-            android:text="Fifth Person Cell No"
-            android:textSize="16sp"/>
-        <EditText
-            android:id="@+id/etP5"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:fontFamily="serif"
-            android:textColor="#fff"
-            android:inputType="phone"
-            android:textStyle="bold"
-            android:background="@drawable/et2"
-            android:gravity="center"
-            android:textSize="16sp"/>
+
         <Button
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:textSize="16sp"
             android:fontFamily="serif"
+            android:layout_marginTop="30dp"
             android:layout_margin="10dp"
             android:background="@drawable/btn10"
             android:text="Save changes"
             android:onClick="saveClick"
             android:textStyle="bold"
             android:textColor="#fff"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
     </LinearLayout>
 
 </ScrollView>

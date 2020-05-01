@@ -16,11 +16,12 @@ import androidx.core.app.ActivityCompat;
 
 public class EmergencyContacts extends AppCompatActivity {
 
+    Button nen;
     Button police;
-    Button rescue;
-    Button counter_T;
-    Button motorway_police;
-
+    Button ambulance;
+    Button fire_station;
+    Button women_helpline;
+    Button road_accident;
 
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
 
@@ -29,17 +30,33 @@ public class EmergencyContacts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_contacts);
 
+        nen = (Button) findViewById(R.id.nen);
         police = (Button) findViewById(R.id.police);
-        rescue = (Button) findViewById(R.id.rescue);
-        counter_T = (Button) findViewById(R.id.counter_T);
-        motorway_police = (Button) findViewById(R.id.motorway_police);
+        ambulance = (Button) findViewById(R.id.ambulance);
+        fire_station = (Button) findViewById(R.id.fire_station);
+        women_helpline = (Button) findViewById(R.id.women_helpline);
+        road_accident = (Button) findViewById(R.id.road_accident);
+
+        nen.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:9663803347"));
+                if (ActivityCompat.checkSelfPermission(EmergencyContacts.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
 
         police.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + 15));
+                intent.setData(Uri.parse("tel:9663803347"));
                 if (ActivityCompat.checkSelfPermission(EmergencyContacts.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
                     return;
@@ -48,12 +65,12 @@ public class EmergencyContacts extends AppCompatActivity {
             }
         });
 
-        rescue.setOnClickListener(new View.OnClickListener() {
+        ambulance.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + 1122));
+                intent.setData(Uri.parse("tel:9663803347"));
                 if (ActivityCompat.checkSelfPermission(EmergencyContacts.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
                     return;
@@ -62,12 +79,12 @@ public class EmergencyContacts extends AppCompatActivity {
             }
         });
 
-        counter_T.setOnClickListener(new View.OnClickListener() {
+        fire_station.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + 1717));
+                intent.setData(Uri.parse("tel:9663803347"));
                 if (ActivityCompat.checkSelfPermission(EmergencyContacts.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
                     return;
@@ -76,12 +93,26 @@ public class EmergencyContacts extends AppCompatActivity {
             }
         });
 
-        motorway_police.setOnClickListener(new View.OnClickListener() {
+        women_helpline.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + 130));
+                intent.setData(Uri.parse("tel:9663803347"));
+                if (ActivityCompat.checkSelfPermission(EmergencyContacts.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
+
+        road_accident.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:9663803347"));
                 if (ActivityCompat.checkSelfPermission(EmergencyContacts.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
                     return;

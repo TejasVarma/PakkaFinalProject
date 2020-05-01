@@ -154,10 +154,10 @@
         android:src="@drawable/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.992" />
+        app:layout_constraintVertical_bias="0.973" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab1"
@@ -187,7 +187,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintVertical_bias="0.885" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -348,20 +348,6 @@ public class Home extends AppCompatActivity {
             Log.d("sendOneByOne phone3 ", "sendOneByOne: phone3=" + phoneNo);
             sendSMSBySMSManager();
         }
-        String p4 = sharedPreferences.contains("p4") ? sharedPreferences.getString("p4", "") : "invalid";
-        Log.d("sendOneByOne p4 be ", "sendOneByOne: p4=" + p4);
-        if (Patterns.PHONE.matcher(p4).matches()) {
-            phoneNo = p4;
-            Log.d("sendOneByOne phone4 ", "sendOneByOne: phone4=" + phoneNo);
-            sendSMSBySMSManager();
-        }
-        String p5 = sharedPreferences.contains("p5") ? sharedPreferences.getString("p5", "") : "invalid";
-        Log.d("sendOneByOne p5 be ", "sendOneByOne: p5=" + p5);
-        if (Patterns.PHONE.matcher(p5).matches()) {
-            phoneNo = p5;
-            Log.d("sendOneByOne phone5 ", "sendOneByOne: phone5=" + phoneNo);
-            sendSMSBySMSManager();
-        }
         phoneNo = "";
         message = "";
     }
@@ -386,11 +372,11 @@ public class Home extends AppCompatActivity {
         Button button = (Button) view;
         if (button.getText().equals("Switch On")) {
             button.setText(R.string.switch_off_text);
-            button.setBackgroundResource(R.drawable.btn10);
+            button.setBackgroundResource(R.drawable.flash);
             torchToggle("on");
         } else {
             button.setText(R.string.switch_on_text);
-            button.setBackgroundResource(R.drawable.btn1);
+            button.setBackgroundResource(R.drawable.flash);
             torchToggle("off");
         }
     }
@@ -427,21 +413,21 @@ public class Home extends AppCompatActivity {
         if (sharedPreferences.contains("redMsg"))
             return sharedPreferences.getString("redMsg", "");
         else
-            return "Hi, I am in trouble. Please help..!!!";
+            return "Need help";
     }
 
     private String getYellowMsg() {
         if (sharedPreferences.contains("yellowMsg"))
             return sharedPreferences.getString("yellowMsg", "");
         else
-            return "Hi, just being cautious..!!!";
+            return "Just being cautious";
     }
 
     private String getGreenMsg() {
         if (sharedPreferences.contains("greenMsg"))
             return sharedPreferences.getString("greenMsg", "");
         else
-            return "Hi, sending a status update..!!!";
+            return "I'm safe, Thank You";
     }
 
     public void morebutton(View view) {
