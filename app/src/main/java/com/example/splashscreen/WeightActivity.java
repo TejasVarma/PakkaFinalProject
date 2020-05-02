@@ -78,5 +78,9 @@ public class WeightActivity extends AppCompatActivity {
         calculated_result.setText(bmiLabel);
 
     }
+
+    public void close(View view) {
+        finish();
+    }
 }
 

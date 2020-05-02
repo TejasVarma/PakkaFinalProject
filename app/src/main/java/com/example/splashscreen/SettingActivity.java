@@ -98,7 +98,7 @@ public class SettingActivity extends AppCompatActivity {
         String p2 = etP2.getText().toString().trim();
         String p3 = etP3.getText().toString().trim();
         setData(name, contact, address, redMsg, yellowMsg, greenMsg, p1, p2, p3);
-        Toast.makeText(this, "Successfully Saved...!!!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successfully Saved", Toast.LENGTH_SHORT).show();
         finish();
     }
 

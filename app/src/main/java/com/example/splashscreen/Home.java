@@ -50,9 +50,13 @@ public class Home extends AppCompatActivity {
     boolean isGreenClick = false;
     boolean isYellowClick = false;
     boolean isTorchOn = false;
+    boolean isThreadRunning = false;
+    Thread mThread;
     private SharedPreferenceConfig preferenceConfig;
 
-    FloatingActionButton fab,fab1,fab2;
+    Button flashButton;
+    boolean isFlashActive = false;
+    FloatingActionButton fab, fab1, fab2;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
     boolean isOpen = false;
 
@@ -63,15 +67,15 @@ public class Home extends AppCompatActivity {
                     for (int i = 0; i < 9; i++) {
                         torchToggle("on");
                         if (i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8) {
-                            Thread.sleep(250);
+                            Thread.sleep(125);
                         } else {
-                            Thread.sleep(500);
+                            Thread.sleep(250);
                         }
                         torchToggle("off");
                         if (i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8) {
-                            Thread.sleep(250);
+                            Thread.sleep(125);
                         } else {
-                            Thread.sleep(500);
+                            Thread.sleep(250);
                         }
                     }
                 }
@@ -82,21 +86,50 @@ public class Home extends AppCompatActivity {
         }
     };
 
+    Thread createNewThread() {
+        return new Thread() {
+            public void run() {
+                try {
+                    for (int x = 0; x < 20; x++) {
+                        for (int i = 0; i < 9; i++) {
+                            torchToggle("on");
+                            if (i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8) {
+                                Thread.sleep(125);
+                            } else {
+                                Thread.sleep(250);
+                            }
+                            torchToggle("off");
+                            if (i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8) {
+                                Thread.sleep(125);
+                            } else {
+                                Thread.sleep(250);
+                            }
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
 
-        fabOpen = AnimationUtils.loadAnimation(this,R.anim.fab_open);
-        fabClose = AnimationUtils.loadAnimation(this,R.anim.fab_close);
+        flashButton = findViewById(R.id.flashButton);
 
-        rotateForward = AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
-        rotateBackward = AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
+        fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
+        fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
+
+        rotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
+        rotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +142,9 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateFab();
-                Intent xyx = new Intent(Home.this,SettingActivity.class);
+                Intent xyx = new Intent(Home.this, SettingActivity.class);
                 startActivity(xyx);
+
             }
         });
 
@@ -128,6 +162,30 @@ public class Home extends AppCompatActivity {
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS}, REQUEST_LOCATION);
         btnRed = findViewById(R.id.btnRed);
         btnGreen = findViewById(R.id.btnGreen);
+
+
+        flashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //create a new thread
+                isFlashActive = !isFlashActive;
+                if (isFlashActive && !isThreadRunning) {
+                    if (mThread != null) {
+                        mThread.interrupt();
+                        mThread = null;
+                    }
+                    mThread = createNewThread();
+                    mThread.start();
+                    isThreadRunning = true;
+                } else {
+                    torchToggle("off");
+                    if (isThreadRunning) {
+                        mThread.interrupt();
+                        isThreadRunning = false;
+                    }
+                }
+            }
+        });
 
         btnGreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,39 +211,27 @@ public class Home extends AppCompatActivity {
         });
     }
 
-    private void animateFab()
-    {
-        if(isOpen)
-        {
+    private void animateFab() {
+        if (isOpen) {
             fab.startAnimation(rotateForward);
             fab1.startAnimation(fabClose);
             fab2.startAnimation(fabClose);
             fab1.setClickable(false);
             fab2.setClickable(false);
-            isOpen=false;
-        }
-        else
-        {
+            isOpen = false;
+        } else {
             fab.startAnimation(rotateBackward);
             fab1.startAnimation(fabOpen);
             fab2.startAnimation(fabOpen);
             fab1.setClickable(true);
             fab2.setClickable(true);
-            isOpen=true;
+            isOpen = true;
         }
-    }
-
-
-    public void userLogout(View view) {
-
-        preferenceConfig.writeLoginStatus(false);
-        startActivity(new Intent(this, Login.class));
-        finish();
     }
 
     public void redClick(final View view) {
         Intent intent = new Intent(Intent.ACTION_CALL);
-        Intent intent1= new Intent(Intent.ACTION_SEND);
+        Intent intent1 = new Intent(Intent.ACTION_SEND);
         intent.setData(Uri.parse("tel:9663803347"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -210,7 +256,6 @@ public class Home extends AppCompatActivity {
             }, 10000000);
         } else {
             Toast.makeText(this, "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
-            toggle(view);
         }
         if (player.isPlaying()) {
             player.stop();
@@ -368,18 +413,7 @@ public class Home extends AppCompatActivity {
     }
 
     //Code for flashlight
-    public void toggle(View view) {
-        Button button = (Button) view;
-        if (button.getText().equals("Switch On")) {
-            button.setText(R.string.switch_off_text);
-            button.setBackgroundResource(R.drawable.flash);
-            torchToggle("on");
-        } else {
-            button.setText(R.string.switch_on_text);
-            button.setBackgroundResource(R.drawable.flash);
-            torchToggle("off");
-        }
-    }
+
 
     private void torchToggle(String command) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

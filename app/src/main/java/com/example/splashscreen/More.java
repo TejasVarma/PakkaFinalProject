@@ -7,12 +7,20 @@ import android.view.View;
 
 public class More extends AppCompatActivity {
 
+    private SharedPreferenceConfig preferenceConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
 
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
+    }
 
+    public void userLogout(View view) {
+        preferenceConfig.writeLoginStatus(false);
+        startActivity(new Intent(this, Login.class));
+        finish();
     }
 
     public void video(View view){
