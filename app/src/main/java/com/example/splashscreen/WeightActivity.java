@@ -3,6 +3,7 @@ package com.example.splashscreen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ public class WeightActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
+
         height=(EditText)findViewById(R.id.height);
         waist=(EditText)findViewById(R.id.weight);
         calculated_result=(TextView)findViewById(R.id.result);
@@ -31,6 +34,7 @@ public class WeightActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     public void  calculateRFM(View view)

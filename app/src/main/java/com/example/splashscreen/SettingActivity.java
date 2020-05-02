@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class SettingActivity extends AppCompatActivity {
         etP1 = findViewById(R.id.etP1);
         etP2 = findViewById(R.id.etP2);
         etP3 = findViewById(R.id.etP3);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
+
     }
 
     @Override
