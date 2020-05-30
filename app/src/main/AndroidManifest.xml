@@ -22,7 +22,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SMSTestActivity"></activity>
+        <activity android:name=".fab"></activity>
+        <activity android:name=".cpr6" />
+        <activity android:name=".cpr5" />
+        <activity android:name=".cpr4" />
+        <activity android:name=".cpr3" />
+        <activity android:name=".cpr2" />
+        <activity android:name=".cpr1" />
+        <activity android:name=".SMSTestActivity" />
         <activity android:name=".EmergencyContacts" />
         <activity android:name=".RiskAnalysis" />
         <activity android:name=".WeightActivity" />

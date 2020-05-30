@@ -18,4 +18,10 @@ public class RiskAnalysis extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
 
     }
+
+    public void goback(View view){
+        Intent abc16 = new Intent(RiskAnalysis.this,WeightActivity.class);
+        startActivity(abc16);
+    }
+
 }

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -37,7 +36,6 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
 
         txtEmail = (EditText)findViewById(R.id.txt_email);
         txtPassword = (EditText)findViewById(R.id.txt_password);
@@ -57,27 +55,36 @@ public class SignUp extends AppCompatActivity {
                 String password = txtPassword.getText().toString().trim();
                 String confirmPassword = txtConfirmPassword.getText().toString().trim();
 
-                if (radioGenderMale.isChecked()){
+                if (radioGenderMale.isChecked())
+                {
                     gender = "Male";
                 }
-                if (getRadioGenderFemale.isChecked()){
+
+                if (getRadioGenderFemale.isChecked())
+                {
                     gender = "Female";
                 }
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email))
+                {
                     Toast.makeText(SignUp.this, "Please enter email", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(password)){
+
+                if (TextUtils.isEmpty(password))
+                {
                     Toast.makeText(SignUp.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(confirmPassword)){
+
+                if (TextUtils.isEmpty(confirmPassword))
+                {
                     Toast.makeText(SignUp.this, "confirm properly", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (password.length()<6){
+                if (password.length()<6)
+                {
                     Toast.makeText(SignUp.this, "Password too short", Toast.LENGTH_SHORT).show();
                 }
 
@@ -95,11 +102,23 @@ public class SignUp extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
                                         users information = new users(
-
                                                 email,
                                                 gender
-
                                         );
+
+                                        firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if (task.isSuccessful()){
+                                                    Toast.makeText(SignUp.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                                                }
+                                                else {
+                                                    Toast.makeText(SignUp.this, "Please verify email", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                            }
+                                        });
 
                                         FirebaseDatabase.getInstance().getReference("users")
                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -107,17 +126,27 @@ public class SignUp extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
 
-                                                Intent intent = new Intent(SignUp.this,Home.class);
-                                                startActivity(intent);
-                                                Toast.makeText(SignUp.this, "Registration Succes", Toast.LENGTH_SHORT).show();
+                                                firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if (task.isSuccessful()){
+                                                            Toast.makeText(SignUp.this, "Registration Succes", Toast.LENGTH_SHORT).show();
+                                                            Intent intent = new Intent(SignUp.this,Home.class);
+                                                            startActivity(intent);
+                                                        }
+                                                        else {
+                                                            Toast.makeText(SignUp.this, "Please verify email", Toast.LENGTH_LONG).show();
+                                                        }
+
+                                                    }
+                                                });
+
+
 
                                             }
                                         });
 
-                                    } else {
-
-                                        Toast.makeText(SignUp.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
-                                        
                                     }
                                 }
                             });

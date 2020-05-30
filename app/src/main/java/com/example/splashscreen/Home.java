@@ -57,7 +57,7 @@ public class Home extends AppCompatActivity {
 
     Button flashButton;
     boolean isFlashActive = false;
-    FloatingActionButton fab, fab1, fab2;
+    FloatingActionButton fab, fab2;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
     boolean isOpen = false;
 
@@ -122,7 +122,6 @@ public class Home extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
 
         flashButton = findViewById(R.id.flashButton);
@@ -140,21 +139,14 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFab();
-                Intent xyx = new Intent(Home.this, SettingActivity.class);
-                startActivity(xyx);
 
-            }
-        });
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 animateFab();
-                Toast.makeText(Home.this, "Folder fab clicked", Toast.LENGTH_SHORT).show();
+                Intent xyx = new Intent(Home.this, fab.class);
+                startActivity(xyx);
             }
         });
 
@@ -216,16 +208,12 @@ public class Home extends AppCompatActivity {
     private void animateFab() {
         if (isOpen) {
             fab.startAnimation(rotateForward);
-            fab1.startAnimation(fabClose);
             fab2.startAnimation(fabClose);
-            fab1.setClickable(false);
             fab2.setClickable(false);
             isOpen = false;
         } else {
             fab.startAnimation(rotateBackward);
-            fab1.startAnimation(fabOpen);
             fab2.startAnimation(fabOpen);
-            fab1.setClickable(true);
             fab2.setClickable(true);
             isOpen = true;
         }
@@ -348,7 +336,7 @@ public class Home extends AppCompatActivity {
                     } else if (isGreenClick)
                         finish();
                 }
-            }, 10000);
+            }, 10000000);
         } else {
             Toast.makeText(this, "Invalid Sender Cell Number", Toast.LENGTH_SHORT).show();
         }

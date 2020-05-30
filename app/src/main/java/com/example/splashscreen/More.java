@@ -46,4 +46,9 @@ public class More extends AppCompatActivity {
         startActivity(aaa);
     }
 
+    public void cpr(View view){
+        Intent qwe = new Intent(More.this,cpr1.class);
+        startActivity(qwe);
+    }
+
 }

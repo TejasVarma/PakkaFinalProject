@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/alice</item>
+        <item>@font/alike</item>
         <item>@font/bungee</item>
+        <item>@font/mako</item>
     </array>
 </resources>

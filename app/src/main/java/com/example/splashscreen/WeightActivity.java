@@ -86,5 +86,10 @@ public class WeightActivity extends AppCompatActivity {
     public void close(View view) {
         finish();
     }
+
+    public void goback(View view){
+        Intent abc26 = new Intent(WeightActivity.this,More.class);
+        startActivity(abc26);
+    }
 }
 

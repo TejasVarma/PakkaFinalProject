@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,7 +29,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
 
         txtEmail = (EditText)findViewById(R.id.txt_email);
         txtPassword = (EditText)findViewById(R.id.txt_password);
@@ -70,15 +68,17 @@ public class Login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
 
-                                    preferenceConfig.writeLoginStatus(true );
-                                    Intent intent = new Intent(Login.this,Home.class);
-                                    startActivity(intent);
-                                    finish();
+                                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
 
-                                } else {
+                                        preferenceConfig.writeLoginStatus(true);
+                                        Intent intent = new Intent(Login.this, Home.class);
+                                        startActivity(intent);
 
-                                    Toast.makeText(Login.this, "User not registered", Toast.LENGTH_SHORT).show();
+                                    }else {
 
+                                        Toast.makeText(Login.this, "Please verify email", Toast.LENGTH_SHORT).show();
+
+                                    }
 
                                 }
 

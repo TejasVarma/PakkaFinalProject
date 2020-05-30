@@ -128,4 +128,11 @@ public class EmergencyContacts extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    public void goback(View view){
+        Intent abc28 = new Intent(EmergencyContacts.this,More.class);
+        startActivity(abc28);
+    }
+
+
 }
